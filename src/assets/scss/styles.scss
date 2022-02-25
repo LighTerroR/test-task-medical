@@ -1,0 +1,93 @@
+@import "./utils/reset.scss", "./utils/vars.scss", "./utils/mixins.scss", "./utils/fonts.scss";
+
+@import "./ui-parts.scss";
+
+@include make_container($breakpoints);
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  background-color: $white;
+}
+
+body.dark {
+  background-color: $second;
+
+  .header {
+    background-color: rgba(7, 33, 53, 0.7);
+
+    &__logo,
+    &__nav-link {
+      color: $white;
+    }
+
+    &__nav-link::before {
+      background-color: $white;
+    }
+
+    &__mobile-menu {
+      background-color: $white;
+    }
+  }
+
+  .mobile-menu {
+    background-color: rgba(7, 33, 53, 0.7);
+
+    &__cross::before,
+    &__cross::after {
+      background-color: $white;
+    }
+
+    &__link {
+      color: $white;
+    }
+  }
+
+  .clinic__title,
+  .clinic__text {
+    color: $white;
+  }
+
+  .features {
+    background-color: $second;
+
+    &__block::before {
+      background-color: rgba(7, 33, 53, 0.6);
+    }
+  }
+
+  .gallery {
+    background-color: $form-color;
+  }
+
+  .contact-us {
+    &__title,
+    &__input,
+    &__message {
+      color: $white;
+    }
+
+    &__input::placeholder,
+    &__message::placeholder,
+    &__button:disabled {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    &__input,
+    &__message,
+    &__button:disabled {
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 0 10px;
+  }
+}

@@ -1,0 +1,25 @@
+//breakpoints
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+//colors
+$white: #fff;
+$gray: #f1f1f1;
+$first: #6bc2f1;
+$second: #072135;
+$text-color: #1b1b1b;
+$light-text-color: #1b1b1bcc;
+$header-text: #252525;
+$button-text: #061b46;
+$form-color: #413d4b;
+$light-form-color: rgba(65, 61, 75, 0.1);
+$danger: #FA6037;
+
+@function width($parent-width, $element-width) {
+  @return ($element-width / $parent-width) * 100%;
+}
