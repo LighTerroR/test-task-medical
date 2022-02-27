@@ -46,12 +46,10 @@
         @click="openMenu"
       />
     </div>
-    <transition name="slide">
-      <MobileMenu
-        v-show="menu"
-        @close-menu="closeMenu"
-      />
-    </transition>
+    <MobileMenu
+      :active="menu"
+      @close-menu="closeMenu"
+    />
     <div class="progress">
       <div
         ref="myBar"

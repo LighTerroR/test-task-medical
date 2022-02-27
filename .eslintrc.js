@@ -42,5 +42,6 @@ module.exports = {
     'no-bitwise': ['error', { allow: ['~'] }],
     'vue/require-prop-types': 0,
     'import/no-unresolved': 0,
+    'vue/no-deprecated-slot-attribute': 0,
   },
 };

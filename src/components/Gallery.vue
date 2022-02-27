@@ -3,78 +3,87 @@
     id="gallery"
     class="gallery"
   >
-    <div class="gallery__wrapper container">
-      <div
-        class="gallery__image-wrapper"
-        data-aos-anchor="#gallery"
-        data-aos="fade-right"
+    <div class="container">
+      <swiper
+        class="gallery__wrapper"
+        :options="swiperOption"
       >
-        <img
-          src="@/assets/img/gallery/gallery-img-1.png"
-          alt=""
-          class="gallery__image sepia"
+        <swiper-slide
+          class="gallery__image-wrapper"
+          data-aos-anchor="#gallery"
+          data-aos="fade-right"
         >
-      </div>
-      <div
-        class="gallery__image-wrapper"
-        data-aos-anchor="#gallery"
-        data-aos="fade-down"
-        data-aos-delay="500"
-      >
-        <img
-          src="@/assets/img/gallery/gallery-img-2.png"
-          alt=""
-          class="gallery__image grayscale"
+          <img
+            src="@/assets/img/gallery/gallery-img-1.png"
+            alt=""
+            class="gallery__image sepia"
+          >
+        </swiper-slide>
+        <swiper-slide
+          class="gallery__image-wrapper"
+          data-aos-anchor="#gallery"
+          data-aos="fade-up-right"
+          data-aos-delay="1500"
         >
-      </div>
-      <div
-        class="gallery__image-wrapper"
-        data-aos-anchor="#gallery"
-        data-aos="fade-left"
-        data-aos-delay="1000"
-      >
-        <img
-          src="@/assets/img/gallery/gallery-img-3.png"
-          alt=""
-          class="gallery__image zoom-in"
+          <img
+            src="@/assets/img/gallery/gallery-img-4.png"
+            alt=""
+            class="gallery__image zoom-out"
+          >
+        </swiper-slide>
+        <swiper-slide
+          class="gallery__image-wrapper"
+          data-aos-anchor="#gallery"
+          data-aos="fade-down"
+          data-aos-delay="500"
         >
-      </div>
-      <div
-        class="gallery__image-wrapper"
-        data-aos-anchor="#gallery"
-        data-aos="fade-up-right"
-        data-aos-delay="1500"
-      >
-        <img
-          src="@/assets/img/gallery/gallery-img-4.png"
-          alt=""
-          class="gallery__image zoom-out"
+          <img
+            src="@/assets/img/gallery/gallery-img-2.png"
+            alt=""
+            class="gallery__image grayscale"
+          >
+        </swiper-slide>
+        <swiper-slide
+          class="gallery__image-wrapper"
+          data-aos-anchor="#gallery"
+          data-aos="fade-up"
+          data-aos-delay="2000"
         >
-      </div>
-      <div
-        class="gallery__image-wrapper"
-        data-aos-anchor="#gallery"
-        data-aos="fade-up"
-        data-aos-delay="2000"
-      >
-        <img
-          src="@/assets/img/gallery/gallery-img-5.png"
-          alt=""
-          class="gallery__image blur"
+          <img
+            src="@/assets/img/gallery/gallery-img-5.png"
+            alt=""
+            class="gallery__image blur"
+          >
+        </swiper-slide>
+        <swiper-slide
+          class="gallery__image-wrapper"
+          data-aos-anchor="#gallery"
+          data-aos="fade-left"
+          data-aos-delay="1000"
         >
-      </div>
-      <div
-        class="gallery__image-wrapper"
-        data-aos-anchor="#gallery"
-        data-aos="fade-up-left"
-        data-aos-delay="2500"
-      >
-        <img
-          src="@/assets/img/gallery/gallery-img-6.png"
-          alt=""
-          class="gallery__image opacity"
+          <img
+            src="@/assets/img/gallery/gallery-img-3.png"
+            alt=""
+            class="gallery__image zoom-in"
+          >
+        </swiper-slide>
+        <swiper-slide
+          class="gallery__image-wrapper"
+          data-aos-anchor="#gallery"
+          data-aos="fade-up-left"
+          data-aos-delay="2500"
         >
-      </div>
+          <img
+            src="@/assets/img/gallery/gallery-img-6.png"
+            alt=""
+            class="gallery__image opacity"
+          >
+        </swiper-slide>
+        <div
+          slot="pagination"
+          class="swiper-pagination"
+        />
+      </swiper>
     </div>
   </div>
 </template>
@@ -82,15 +91,43 @@
 <script>
 import AOS from 'aos';
 import { Fancybox } from '@fancyapps/ui';
-// import { Navigation, Pagination, Scrollbar } from 'swiper';
-// import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
 
 import 'aos/dist/aos.css';
 import '@fancyapps/ui/dist/fancybox.css';
-// import 'swiper/scss';
+import 'swiper/css/swiper.css';
 
 export default {
   name: 'MedicalGallery',
+
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+
+  data() {
+    return {
+      swiperOption: {
+        slidesPerView: 1,
+        slidesPerColumn: 1,
+        watchOverflow: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        breakpoints: {
+          768: {
+            slidesPerView: 3,
+            slidesPerColumn: 2,
+            spaceBetween: 30,
+            watchOverflow: true,
+            noSwiping: true,
+            noSwipingClass: 'gallery__wrapper',
+          },
+        },
+      },
+    };
+  },
 
   mounted() {
     AOS.init({
@@ -111,18 +148,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .gallery {
   padding: 45px 0;
   background-color: $gray;
 
   &__wrapper {
+    height: 630px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__image-wrapper {
+    width: 370px;
+    height: auto;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* &__wrapper {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    height: 660px;
   }
 
   &__image-wrapper {
     width: 31.63%;
+    height: 300px !important;
     margin: 15px 0;
     overflow: hidden;
     cursor: pointer;
@@ -130,7 +188,7 @@ export default {
 
   &__image {
     width: 100%;
-  }
+  } */
 }
 
 @media (any-hover: hover) {
@@ -189,15 +247,24 @@ export default {
   }
 }
 
-@media screen and (max-width: 767px) {
-  .gallery__image-wrapper {
-    width: 45%;
+@media screen and (max-width: 1200px) {
+  .gallery__wrapper {
+    height: 530px;
   }
 }
 
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 991px) {
+  .gallery__wrapper {
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .gallery__wrapper {
+    height: auto;
+  }
   .gallery__image-wrapper {
-    width: 100%;
+    height: auto;
   }
 }
 </style>

@@ -1,5 +1,8 @@
 <template>
-  <div class="mobile-menu">
+  <div
+    class="mobile-menu"
+    :class="{'mobile-menu--active': active}"
+  >
     <div class="mobile-menu__item">
       <span
         class="mobile-menu__cross"
@@ -54,6 +57,12 @@ export default {
   components: {
     ToggleTheme,
   },
+  props: {
+    active: {
+      type: Boolean,
+      default: false,
+    },
+  },
   emits: ['close-menu'],
 };
 </script>
@@ -70,6 +79,12 @@ export default {
   width: 320px;
   height: 100vh;
   background-color: rgba(255, 255, 255, .7);
+  transform: translateX(100%);
+  transition: .3s ease-in;
+
+  &--active {
+    transform: translateX(0);
+  }
 
   &__item {
     display: flex;
